@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoJenkins", "DemoJenkins\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoJenkins.Tests", "DemoJenkins.Tests\DemoJenkins.Tests.csproj", "{E418532B-D2F9-49E1-B41D-B27299A73925}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartTest", "StartTest\StartTest.csproj", "{27737B4B-2747-4EAC-8CE2-09DE10CEB433}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E418532B-D2F9-49E1-B41D-B27299A73925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E418532B-D2F9-49E1-B41D-B27299A73925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E418532B-D2F9-49E1-B41D-B27299A73925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27737B4B-2747-4EAC-8CE2-09DE10CEB433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27737B4B-2747-4EAC-8CE2-09DE10CEB433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27737B4B-2747-4EAC-8CE2-09DE10CEB433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27737B4B-2747-4EAC-8CE2-09DE10CEB433}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
