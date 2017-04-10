@@ -15,8 +15,8 @@ namespace DemoJenkins.Tests.Controllers
     public class SeleniumTests
     {
         //private readonly IWebDriver _firefox = new FirefoxDriver();
-        //private readonly IWebDriver _chrome = new ChromeDriver();
-        private readonly IWebDriver _iexplorer = new InternetExplorerDriver();
+        private readonly IWebDriver _chrome = new ChromeDriver();
+        //private readonly IWebDriver _iexplorer = new InternetExplorerDriver();
 
         private string email = string.Join("", Guid.NewGuid().ToString().Take(6)) + "@gmail.com";
         private string password = "Ab*?" + string.Join("", Guid.NewGuid().ToString().Take(6));
@@ -33,30 +33,30 @@ namespace DemoJenkins.Tests.Controllers
         [TestMethod]
         public void Can_add_Item()
         {
-            AddItem(_iexplorer, item);
+            AddItem(_chrome, item);
         }
 
         [TestMethod]
         public void Can_Remove_Item()
         {
-            RemoveItem(_iexplorer, item);
+            RemoveItem(_chrome, item);
         }
 
         [TestMethod]
         public void Can_Edit_Item()
         {
-            EditItem(_iexplorer, item);
+            EditItem(_chrome, item);
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            if (_iexplorer != null)
-                _iexplorer.Quit();
+            //if (_iexplorer != null)
+                //_iexplorer.Quit();
             //if (_firefox != null)
             //    _firefox.Quit();
-            //if (_chrome != null)
-            //    _chrome.Quit();
+            if (_chrome != null)
+                  _chrome.Quit();
         }
 
         private void CreateUser(IWebDriver driver, string email, string password)
