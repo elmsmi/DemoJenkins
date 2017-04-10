@@ -61,44 +61,58 @@ namespace DemoJenkins.Tests.Controllers
 
         private void CreateUser(IWebDriver driver, string email, string password)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 #if DEBUG
-            driver.Navigate().GoToUrl("http://localhost/DemoJenkins/");
+                driver.Navigate().GoToUrl("http://localhost/DemoJenkins/");
 #else
             driver.Navigate().GoToUrl("http://localhost/DemoJenkinsRelease/");
 #endif
-            driver.Manage().Window.Maximize();
-            driver.FindElement(By.Id("registerLink")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("Email")));
-            driver.FindElement(By.Id("Email")).SendKeys(email);
-            driver.FindElement(By.Id("Password")).SendKeys(password);
-            driver.FindElement(By.Id("ConfirmPassword")).SendKeys(password);
-            driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("loggedin")));
-            var userWasCreated = driver.FindElement(By.Id("loggedin")).Text.Contains(email);
+                driver.Manage().Window.Maximize();
+                driver.FindElement(By.Id("registerLink")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("Email")));
+                driver.FindElement(By.Id("Email")).SendKeys(email);
+                driver.FindElement(By.Id("Password")).SendKeys(password);
+                driver.FindElement(By.Id("ConfirmPassword")).SendKeys(password);
+                driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("loggedin")));
+                var userWasCreated = driver.FindElement(By.Id("loggedin")).Text.Contains(email);
 
-            Assert.IsTrue(userWasCreated);
+                Assert.IsTrue(userWasCreated);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
         }
 
         private void LoginUser(IWebDriver driver, string email, string password)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
 #if DEBUG
-            driver.Navigate().GoToUrl("http://localhost/DemoJenkins/");
+                driver.Navigate().GoToUrl("http://localhost/DemoJenkins/");
 #else
             driver.Navigate().GoToUrl("http://localhost/DemoJenkinsRelease/");
 #endif
-            driver.Manage().Window.Maximize();
+                driver.Manage().Window.Maximize();
 
-            driver.FindElement(By.Id("loginLink")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("Email")));
-            driver.FindElement(By.Id("Email")).SendKeys(email);
-            driver.FindElement(By.Id("Password")).SendKeys(password);
-            driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("loggedin")));
-            var userWasCreated = driver.FindElement(By.Id("loggedin")).Text.Contains(email);
-            Assert.IsTrue(userWasCreated);
+                driver.FindElement(By.Id("loginLink")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("Email")));
+                driver.FindElement(By.Id("Email")).SendKeys(email);
+                driver.FindElement(By.Id("Password")).SendKeys(password);
+                driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("loggedin")));
+                var userWasCreated = driver.FindElement(By.Id("loggedin")).Text.Contains(email);
+                Assert.IsTrue(userWasCreated);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
         }
 
         private void LogOutUser(IWebDriver driver)
@@ -108,58 +122,77 @@ namespace DemoJenkins.Tests.Controllers
 
         private void AddItem(IWebDriver driver, string item)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
 #if DEBUG
-            driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
+                driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
 #else
             driver.Navigate().GoToUrl("http://localhost/DemoJenkinsRelease/Items");
 #endif
 
-            driver.Manage().Window.Maximize();
-            driver.FindElement(By.Id("Create")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("ItemName")));
-            driver.FindElement(By.Id("ItemName")).SendKeys(item);
-            driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
-            Assert.IsTrue(driver.FindElement(By.ClassName("table")).Text.C‌​ontains(item));
+                driver.Manage().Window.Maximize();
+                driver.FindElement(By.Id("Create")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("ItemName")));
+                driver.FindElement(By.Id("ItemName")).SendKeys(item);
+                driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
+                Assert.IsTrue(driver.FindElement(By.ClassName("table")).Text.C‌​ontains(item));
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
         }
 
         public void RemoveItem(IWebDriver driver, string item)
         {
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
 #if DEBUG
-            driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
+                driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
 #else
             driver.Navigate().GoToUrl("http://localhost/DemoJenkinsRelease/Items");
 #endif
-            driver.FindElement(By.PartialLinkText("Delete")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".btn.btn-default")));
-            driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
-            Assert.IsTrue(driver.FindElement(By.Id("Create")).Text.C‌​ontains("Add"));
-
+                driver.FindElement(By.PartialLinkText("Delete")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".btn.btn-default")));
+                driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
+                Assert.IsTrue(driver.FindElement(By.Id("Create")).Text.C‌​ontains("Add"));
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
         }
 
         public void EditItem(IWebDriver driver, string item)
         {
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
 #if DEBUG
-            driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
+                driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
 #else
             driver.Navigate().GoToUrl("http://localhost/DemoJenkinsRelease/Items");
 #endif
-            driver.FindElement(By.PartialLinkText("Edit")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("ItemName")));
-            driver.FindElement(By.Id("ItemName")).Clear();
-            driver.FindElement(By.Id("ItemName")).SendKeys(item + "_Edited");
-            driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
-            Assert.IsTrue(driver.FindElement(By.Id("Create")).Text.C‌​ontains("Add"));
+                driver.FindElement(By.PartialLinkText("Edit")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("ItemName")));
+                driver.FindElement(By.Id("ItemName")).Clear();
+                driver.FindElement(By.Id("ItemName")).SendKeys(item + "_Edited");
+                driver.FindElement(By.CssSelector(".btn.btn-default")).Click();
+                wait.Until(ExpectedConditions.ElementExists(By.Id("Create")));
+                Assert.IsTrue(driver.FindElement(By.Id("Create")).Text.C‌​ontains("Add"));
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
+
         }
     }
 }
