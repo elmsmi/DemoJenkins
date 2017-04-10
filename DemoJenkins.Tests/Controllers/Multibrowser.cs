@@ -23,13 +23,8 @@ namespace DemoJenkins.Tests.Controllers
         public void TestFirefoxDriver()
         {
             _firefox = new FirefoxDriver();
-            wait = new WebDriverWait(_firefox, TimeSpan.FromSeconds(30));
             _firefox.Navigate().GoToUrl("http://www.goalsystems.com/");
-            wait.Until(ExpectedConditions.ElementExists(By.Id("contenedor-21")));
-            var pageloaded = _firefox.FindElement(By.Id("contenedor-21")).Text.Contains("Horarios");
-
-            Assert.IsTrue(pageloaded);
-
+            _firefox.Manage().Window.Maximize();
             _firefox.Quit();
 
         }
@@ -39,12 +34,8 @@ namespace DemoJenkins.Tests.Controllers
         {
             _chrome = new ChromeDriver();
             wait = new WebDriverWait(_chrome, TimeSpan.FromSeconds(30));
-            _firefox.Navigate().GoToUrl("http://www.goalsystems.com/");
-            wait.Until(ExpectedConditions.ElementExists(By.Id("contenedor-21")));
-            var pageloaded = _chrome.FindElement(By.Id("contenedor-21")).Text.Contains("Horarios");
-
-            Assert.IsTrue(pageloaded);
-
+            _chrome.Navigate().GoToUrl("http://www.goalsystems.com/");
+            _chrome.Manage().Window.Maximize();
             _chrome.Quit();
 
 
@@ -57,11 +48,7 @@ namespace DemoJenkins.Tests.Controllers
             _iexplorer = new InternetExplorerDriver();
             wait = new WebDriverWait(_iexplorer, TimeSpan.FromSeconds(30));
             _iexplorer.Navigate().GoToUrl("http://www.goalsystems.com/");
-            wait.Until(ExpectedConditions.ElementExists(By.Id("contenedor-21")));
-            var pageloaded = _iexplorer.FindElement(By.Id("contenedor-21")).Text.Contains("Horarios");
-
-            Assert.IsTrue(pageloaded);
-
+            _iexplorer.Manage().Window.Maximize();
             _iexplorer.Quit();
 
         }
