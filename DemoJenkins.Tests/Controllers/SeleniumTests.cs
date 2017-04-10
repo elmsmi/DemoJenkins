@@ -22,14 +22,14 @@ namespace DemoJenkins.Tests.Controllers
         private string password = "Ab*?" + string.Join("", Guid.NewGuid().ToString().Take(6));
         private string item = "Item_" + string.Join("", Guid.NewGuid().ToString().Take(6));
 
-        [TestMethod]
-        public void Can_Create_Account_And_Login()
-        {
-            CreateUser(_iexplorer, email, password);
-            LogOutUser(_iexplorer);
-            LoginUser(_iexplorer, email, password);
-            LogOutUser(_iexplorer);
-        }
+        //[TestMethod]
+        //public void Can_Create_Account_And_Login()
+        //{
+          //  CreateUser(_iexplorer, email, password);
+           // LogOutUser(_iexplorer);
+            //LoginUser(_iexplorer, email, password);
+            //LogOutUser(_iexplorer);
+        //}
         [TestMethod]
         public void Can_add_Item()
         {
