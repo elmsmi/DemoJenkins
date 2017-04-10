@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="DemoJenkins.Tests.Controllers.Multibrowser.TestIEDriver" /><Add Test="DemoJenkins.Tests.Controllers.Multibrowser.TestChromeDriver" /><Add Test="DemoJenkins.Tests.Controllers.Multibrowser.TestFirefoxDriver" /></Playlist>

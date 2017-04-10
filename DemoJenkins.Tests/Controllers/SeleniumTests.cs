@@ -14,8 +14,8 @@ namespace DemoJenkins.Tests.Controllers
     [TestClass]
     public class SeleniumTests
     {
-        private readonly IWebDriver _firefox = new FirefoxDriver();
-        private readonly IWebDriver _chrome = new ChromeDriver();
+        //private readonly IWebDriver _firefox = new FirefoxDriver();
+        //private readonly IWebDriver _chrome = new ChromeDriver();
         private readonly IWebDriver _iexplorer = new InternetExplorerDriver();
 
         private string email = string.Join("", Guid.NewGuid().ToString().Take(6)) + "@gmail.com";
@@ -25,38 +25,38 @@ namespace DemoJenkins.Tests.Controllers
         [TestMethod]
         public void Can_Create_Account_And_Login()
         {
-            CreateUser(_firefox, email, password);
-            LogOutUser(_firefox);
-            LoginUser(_firefox, email, password);
-            LogOutUser(_firefox);
+            CreateUser(_iexplorer, email, password);
+            LogOutUser(_iexplorer);
+            LoginUser(_iexplorer, email, password);
+            LogOutUser(_iexplorer);
         }
         [TestMethod]
         public void Can_add_Item()
         {
-            AddItem(_firefox, item);
+            AddItem(_iexplorer, item);
         }
 
         [TestMethod]
         public void Can_Remove_Item()
         {
-            RemoveItem(_firefox, item);
+            RemoveItem(_iexplorer, item);
         }
 
         [TestMethod]
         public void Can_Edit_Item()
         {
-            EditItem(_firefox, item);
+            EditItem(_iexplorer, item);
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            if (_chrome != null)
-                _chrome.Quit();
-            if (_firefox != null)
-                _firefox.Quit();
-            if (_chrome != null)
-                _chrome.Quit();
+            if (_iexplorer != null)
+                _iexplorer.Quit();
+            //if (_firefox != null)
+            //    _firefox.Quit();
+            //if (_chrome != null)
+            //    _chrome.Quit();
         }
 
         private void CreateUser(IWebDriver driver, string email, string password)
@@ -105,7 +105,6 @@ namespace DemoJenkins.Tests.Controllers
 
             driver.Navigate().GoToUrl("http://localhost/DemoJenkins/Items");
             driver.Manage().Window.Maximize();
-            driver.Manage().Window.Size = new Size(480, 320);
             driver.FindElement(By.Id("Create")).Click();
             wait.Until(ExpectedConditions.ElementExists(By.Id("ItemName")));
             driver.FindElement(By.Id("ItemName")).SendKeys(item);

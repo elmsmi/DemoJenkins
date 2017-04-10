@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="DemoJenkins.Tests.Controllers.SeleniumTests.Can_Edit_Item" /><Add Test="DemoJenkins.Tests.Controllers.SeleniumTests.Can_Remove_Item" /><Add Test="DemoJenkins.Tests.Controllers.SeleniumTests.Can_Create_Account_And_Login" /><Add Test="DemoJenkins.Tests.Controllers.SeleniumTests.Can_add_Item" /></Playlist>
